@@ -90,6 +90,12 @@ export default {
               status: true,
             },
             {
+              name: "我的证书",
+              id: 17,
+              path: "MemberZhengshus",
+              status: true,
+            },
+            {
               name: "我的资料",
               id: 8,
               path: "MemberProfile",

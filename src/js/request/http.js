@@ -4,12 +4,29 @@ import config from '../config';
 import router from '../../router'
 import Utils from "@/js/utils";
 
+
+const http = axios.create({
+    timeout: 10000,
+    baseURL: config.url, //地址1
+    // headers: {
+    //     'X-Requested-With': 'XMLHttpRequest'
+    // }
+})
+
+const http2 = axios.create({
+    timeout: 10000,
+    baseURL: config.url2, //地址2
+    // headers: {
+    //     'X-Requested-With': 'XMLHttpRequest'
+    // }
+})
+
 // 请求域名
-axios.defaults.baseURL = config.url;
-axios.defaults.timeout = 10000;
+//axios.defaults.baseURL = config.url;
+//axios.defaults.timeout = 10000;
 
 // 请求拦截器(附带上token)
-axios.interceptors.request.use(
+http.interceptors.request.use(
     config => {
         const token = Utils.getToken();
         token && (config.headers.Authorization = 'Bearer ' + token);
@@ -21,7 +38,7 @@ axios.interceptors.request.use(
     });
 
 // 响应拦截器
-axios.interceptors.response.use(
+http.interceptors.response.use(
     response => {
         let code = response.data.code;
         if (code !== 0) {
@@ -61,7 +78,19 @@ axios.interceptors.response.use(
 
 export function get(url, params) {
     return new Promise((resolve, reject) => {
-        axios.get(url, {
+        http.get(url, {
+            params: params
+        }).then(res => {
+            resolve(res.data);
+        }).catch(err => {
+            reject(err.data)
+        })
+    });
+}
+
+export function get2(url, params) {
+    return new Promise((resolve, reject) => {
+        http2.get(url, {
             params: params
         }).then(res => {
             resolve(res.data);
@@ -73,7 +102,7 @@ export function get(url, params) {
 
 export function destroy(url) {
     return new Promise((resolve, reject) => {
-        axios.delete(url).then(res => {
+        http.delete(url).then(res => {
             resolve(res.data);
         }).catch(err => {
             reject(err.data)
@@ -83,7 +112,7 @@ export function destroy(url) {
 
 export function post(url, params) {
     return new Promise((resolve, reject) => {
-        axios.post(url, params)
+        http.post(url, params)
             .then(res => {
                 resolve(res.data);
             })
@@ -95,7 +124,7 @@ export function post(url, params) {
 
 export function put(url, params) {
     return new Promise((resolve, reject) => {
-        axios.put(url, QS.stringify(params))
+        http.put(url, QS.stringify(params))
             .then(res => {
                 resolve(res.data);
             })

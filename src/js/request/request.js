@@ -1,4 +1,4 @@
-import { get, post, put, destroy } from "./http";
+import { get, get2, post, put, destroy } from "./http";
 
 const Api = {
   Home: {
@@ -304,6 +304,9 @@ const Api = {
     },
     Messages(params) {
       return get("/api/v2/member/messages", params);
+    },
+    Messages2(params) {
+      return get2("/api/user_zhengshu", params);
     },
     ReadMessage(id) {
       return get("/api/v2/member/notificationMarkAsRead/" + id);

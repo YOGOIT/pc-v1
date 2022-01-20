@@ -273,6 +273,14 @@ const routes = [
     component: () => import("../views/member/messages.vue"),
   },
   {
+    path: "/member/zhengshus",
+    name: "MemberZhengshus",
+    meta: {
+      title: "我的证书",
+    },
+    component: () => import("../views/member/zhengshus.vue"),
+  },
+  {
     path: "/member/profile",
     name: "MemberProfile",
     meta: {

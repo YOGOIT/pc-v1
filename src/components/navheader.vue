@@ -33,6 +33,35 @@
                 </div>
               </div>
             </div>
+			
+            <div class="flex-initial flex items-center">
+                <a
+                  v-if="isLogin"
+                  @click="$router.push({ name: 'MemberZhengshus' })"
+                  style="opacitiy: 0.8"
+                  class="
+                    relative
+                    rounded
+                    mr-12
+                    text-gray-500 text-center
+                    hover:text-gray-900
+                  "
+                >
+                  <img
+                    src="../assets/img/commen/icon-message.png"
+                    width="20"
+                    height="20"
+                    style="margin: 0 auto"
+                  />
+                  <div class="text-sm mt-1 text-center">
+                    <span>证书查询</span>
+                  </div>
+                  <div
+                    v-if="newStatus"
+                    class="w-2 h-2 bg-red-500 rounded-full absolute top-0 right-0"
+                  ></div>
+                </a>
+            </div>
 
             <div class="flex-initial flex items-center">
               <a
