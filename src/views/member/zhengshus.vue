@@ -11,7 +11,7 @@
         <div>
           <ul>
             <li v-for="item in list" :key="item">
-              <img src="https://api.camec.sdyougao.com/storage/images/mO1QPZZ4VsoVjGN2eK8wznrobr3Ju92Q84e4UpJX.png" alt="">
+              <img src="https://api.camec.sdyougao.com/storage/images/TUaKUkfIRLdWgBudJnFytiOA3kLTIvjVLrVkxpud.png" alt="">
               {{ item.content }}
             </li>
           </ul>
